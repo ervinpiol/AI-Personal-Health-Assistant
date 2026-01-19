@@ -18,9 +18,7 @@ FROM python:3.13.11-slim-bookworm AS runner
 
 COPY --from=builder /app/.venv /app/.venv
 
-# Set the virtual environment path explicitly
-ENV VIRTUAL_ENV="/app/.venv"
-ENV PATH="$VIRTUAL_ENV/bin:$PATH"
+ENV PATH="/app/.venv/bin:$PATH"
 
 COPY app ./app
 
