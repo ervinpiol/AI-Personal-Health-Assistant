@@ -1,0 +1,14 @@
+services:
+  api_server:
+    container_name: api_server
+    build:
+      context: ../backend
+      dockerfile: Dockerfile
+    ports:
+      - "8000:8000"
+    environment:
+      DB_URL: ${DB_URL}
+    restart: always
+
+volumes:
+  postgres_data:
