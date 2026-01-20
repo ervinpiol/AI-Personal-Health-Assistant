@@ -1,0 +1,11 @@
+services:
+  api_server:
+    container_name: "api_server"
+    build:
+      context: ../backend
+      dockerfile: Dockerfile
+    env_file:
+      - ../.env
+    ports:
+      - 8000:8000
+    restart: always
