@@ -1,11 +1,15 @@
 services:
   api_server:
     container_name: "api_server"
+    command: uvicorn app.main:app --host 0.0.0.0 --port 8000 --reload
     build:
       context: ../backend
       dockerfile: Dockerfile
     env_file:
       - ../.env
     ports:
-      - 8000:8000
-    restart: always
+      - "8000:8000"
+    volumes:
+      - ../backend:/app
+      - /app/.venv
+    restart: on-failure

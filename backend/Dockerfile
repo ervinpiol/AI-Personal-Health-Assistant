@@ -13,14 +13,14 @@ COPY pyproject.toml uv.lock ./
 
 RUN uv sync --frozen --no-dev --no-install-project
 
-# stage 2: runner
-FROM python:3.13.11-slim-bookworm AS runner
-
+# stage 2: runner/development
+FROM python:3.13.11-slim-bookworm AS development
+WORKDIR /app
 COPY --from=builder /app/.venv /app/.venv
-
 ENV PATH="/app/.venv/bin:$PATH"
 
-COPY app ./app
+# Change: Copy everything from the context (backend/) to /app
+COPY . .
 
 # create a non-root user (named "appuser") and set access to the /app directory
 RUN useradd -m appuser && chown -R appuser /app

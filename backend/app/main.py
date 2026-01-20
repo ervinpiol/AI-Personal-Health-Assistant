@@ -5,9 +5,9 @@ from fastapi.middleware.cors import CORSMiddleware
 from app.core.config import settings
 from app.db.session import warm_up_connections, init_db
 
-
 from app.routes.users import router as users_router
 from app.routes.auth import router as auth_router
+from app.routes.symptoms import router as symptoms_router
 
 
 @asynccontextmanager
@@ -39,3 +39,4 @@ app.add_middleware(
 # Include API routers
 app.include_router(auth_router)
 app.include_router(users_router)
+app.include_router(symptoms_router)

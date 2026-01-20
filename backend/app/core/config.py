@@ -40,6 +40,7 @@ class Settings(BaseSettings):
     POSTGRES_DB: str = ""
 
     SECRET_KEY: str = ""
+    HUGGINGFACE_API_KEY: str = ""
     
     # Computed fields
     @computed_field
